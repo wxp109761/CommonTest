@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
           package="com.example.CommonTest">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+                     tools:ignore="ProtectedPermissions" />
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -23,9 +30,8 @@
         <activity android:name="com.example.fragment.FragmentActivity"/>
         <activity android:name="com.example.video.VideoActivity"/>
         <activity android:name="com.example.Handler.HandlerActivity"/>
-        <activity android:name="com.example.asyncTask.AsyncTaskActivity">
-
-        </activity>
+        <activity android:name="com.example.asyncTask.AsyncTaskActivity"/>
+        <activity android:name="com.example.QINIU.ImgActivity"/>
         <service android:name="com.example.CommonTest.MyService">
             <intent-filter>
                 <action android:name="com.example.uploadingimages" />

@@ -46,5 +46,8 @@
         <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="Handler"
                 android:id="@+id/handler"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="QINIU图床"
+                android:id="@+id/qiniu_img"/>
     </LinearLayout>
 </ScrollView>

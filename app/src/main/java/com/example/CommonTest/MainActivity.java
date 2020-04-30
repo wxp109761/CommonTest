@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.example.Animation.AnimationActivity;
 import com.example.Handler.HandlerActivity;
+import com.example.QINIU.ImgActivity;
 import com.example.asyncTask.AsyncTaskActivity;
 import com.example.fragment.FragmentActivity;
 import com.example.messageService.MessageServiceActivity;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     Button btn_videoActivity;
     @BindView(R.id.handler)
     Button btn_handler;
+    @BindView(R.id.qiniu_img)
+    Button qiniuImg;
     private String TAG = "MainActivity";
     Intent it;
 
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.service, R.id.unbindservice, R.id.getdata, R.id.fragment, R.id.message_service, R.id.animation, R.id.sqllite, R.id.video_activity, R.id.handler,R.id.asynctask})
+    @OnClick({R.id.service, R.id.unbindservice, R.id.getdata, R.id.fragment, R.id.message_service, R.id.animation, R.id.sqllite, R.id.video_activity, R.id.handler, R.id.asynctask,R.id.qiniu_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.service:
@@ -160,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.asynctask:
                 Intent intent7 = new Intent(MainActivity.this, AsyncTaskActivity.class);
                 startActivity(intent7);
+                break;
+            case R.id.qiniu_img:
+                Intent intent8 = new Intent(MainActivity.this, ImgActivity.class);
+                startActivity(intent8);
                 break;
         }
     }
