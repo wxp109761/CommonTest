@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="绑定服务"
+            android:id="@+id/bindservice"
+    />
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="解除绑定服务"
+            android:id="@+id/unbindservice"
+    />
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="发送Msg"
+            android:id="@+id/sendmsg"
+    />
+
+
+
+
+</LinearLayout>

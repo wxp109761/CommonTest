@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        >
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Service测试"
+                android:id="@+id/service"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="绑定服务"
+                android:id="@+id/bindservice"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="解除绑定服务"
+                android:id="@+id/unbindservice"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="获取数据"
+                android:id="@+id/getdata"/>
+
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="AsynTask"
+                android:id="@+id/asynctask"/>
+
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="fragment测试"
+                android:id="@+id/fragment"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="messsageService测试"
+                android:id="@+id/message_service"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Animation动画测试"
+                android:id="@+id/animation"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="SqlLite测试"
+                android:id="@+id/sqllite"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="视频播放器"
+                android:id="@+id/video_activity"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Handler"
+                android:id="@+id/handler"/>
+    </LinearLayout>
+</ScrollView>

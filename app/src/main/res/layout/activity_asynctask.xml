@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="加载"
+            android:id="@+id/load"/>
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="取消加载"
+            android:id="@+id/cancelload"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/tv_show"
+              android:text="未加载"/>
+    <ProgressBar
+            android:layout_below="@+id/text"
+            android:id="@+id/progress_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:progress="0"
+            android:max="100"
+            style="?android:attr/progressBarStyleHorizontal"/>
+
+</LinearLayout>

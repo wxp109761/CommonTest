@@ -1,0 +1,2 @@
+include ':app', ':another'
+rootProject.name='CommonTest'

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.CommonTest">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+
+        <activity android:name="com.example.CommonTest.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.messageService.MessageServiceActivity"/>
+        <activity android:name="com.example.Animation.AnimationActivity"/>
+        <activity android:name="com.example.sqllite.SqlLiteActivity"/>
+        <activity android:name="com.example.fragment.FragmentActivity"/>
+        <activity android:name="com.example.video.VideoActivity"/>
+        <activity android:name="com.example.Handler.HandlerActivity"/>
+        <activity android:name="com.example.asyncTask.AsyncTaskActivity">
+
+        </activity>
+        <service android:name="com.example.CommonTest.MyService">
+            <intent-filter>
+                <action android:name="com.example.uploadingimages" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.example.CommonTest.MyService2" />
+        <service android:name="com.example.CommonTest.BindService" />
+
+        <service android:name="com.example.CommonTest.messageService"
+                 android:process=":remote"/>
+    </application>
+
+
+</manifest>

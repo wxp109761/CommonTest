@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+            android:id="@+id/video_img"
+            android:layout_margin="10dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/tv_name"
+            android:layout_alignParentRight="true"
+    />
+    <LinearLayout
+            android:id="@+id/ll_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:layout_weight="1">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/_009a61"
+                    android:layout_marginRight="6dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    tools:text="名称:"/>
+
+            <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="xxx"
+                    android:textColor="@color/_484848"
+                  />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:layout_weight="2"
+                      android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="1"
+                          >
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/_009a61"
+                        android:layout_marginRight="6dp"
+                        tools:text="路径:"/>
+
+                <TextView
+                        android:id="@+id/tv_path"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:gravity="center_vertical|left"
+                        android:textColor="@color/_2e3135"
+                        tools:text="xxx"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="1">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/_009a61"
+                        tools:text="分辨率:"/>
+
+                <TextView
+                        android:id="@+id/tv_fenbian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/_484848"
+                        android:gravity="center"
+                        tools:text="分辨率"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
