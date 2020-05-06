@@ -16,7 +16,8 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true">
 
         <activity android:name="com.example.CommonTest.MainActivity">
             <intent-filter>
@@ -24,24 +25,26 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.example.messageService.MessageServiceActivity"/>
-        <activity android:name="com.example.Animation.AnimationActivity"/>
-        <activity android:name="com.example.sqllite.SqlLiteActivity"/>
-        <activity android:name="com.example.fragment.FragmentActivity"/>
-        <activity android:name="com.example.video.VideoActivity"/>
-        <activity android:name="com.example.Handler.HandlerActivity"/>
-        <activity android:name="com.example.asyncTask.AsyncTaskActivity"/>
-        <activity android:name="com.example.QINIU.ImgActivity"/>
-        <service android:name="com.example.CommonTest.MyService">
+        <activity android:name=".messageService.MessageServiceActivity"/>
+        <activity android:name=".animation.AnimationActivity"/>
+        <activity android:name=".sqllite.SqlLiteActivity"/>
+        <activity android:name=".fragment.FragmentActivity"/>
+        <activity android:name=".video.VideoActivity"/>
+        <activity android:name=".handler.HandlerActivity"/>
+        <activity android:name=".asyncTask.AsyncTaskActivity"/>
+        <activity android:name=".qiniu.ImgActivity"/>
+        <activity android:name=".remind.Remind"/>
+        <activity android:name=".service.ServiceActivity"/>
+        <service android:name="com.example.CommonTest.service.MyService">
             <intent-filter>
                 <action android:name="com.example.uploadingimages" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
-        <service android:name="com.example.CommonTest.MyService2" />
-        <service android:name="com.example.CommonTest.BindService" />
+        <service android:name="com.example.CommonTest.service.MyService2" />
+        <service android:name="com.example.CommonTest.service.BindService" />
 
-        <service android:name="com.example.CommonTest.messageService"
+        <service android:name="com.example.CommonTest.service.messageService"
                  android:process=":remote"/>
     </application>
 

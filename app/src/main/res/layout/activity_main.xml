@@ -9,20 +9,9 @@
         >
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:orientation="vertical">
-
         <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="Service测试"
                 android:id="@+id/service"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="绑定服务"
-                android:id="@+id/bindservice"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="解除绑定服务"
-                android:id="@+id/unbindservice"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="获取数据"
-                android:id="@+id/getdata"/>
-
 
         <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="AsynTask"
@@ -49,5 +38,8 @@
         <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="QINIU图床"
                 android:id="@+id/qiniu_img"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="提醒功能"
+                android:id="@+id/remind_activity"/>
     </LinearLayout>
 </ScrollView>
