@@ -41,5 +41,9 @@
         <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="提醒功能"
                 android:id="@+id/remind_activity"/>
+        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="闹钟"
+                android:id="@+id/naozhong"/>
+
     </LinearLayout>
 </ScrollView>

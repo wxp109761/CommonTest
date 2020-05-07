@@ -9,6 +9,9 @@
     android:fitsSystemWindows="true"
    >
 
+
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:fitsSystemWindows="true"

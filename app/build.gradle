@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.example.uploadingimages"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -61,7 +61,14 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.3.0'
     //第三方SnackBar
     implementation 'com.irozon.sneaker:sneaker:1.0.3'
+
     implementation('com.github.ozodrukh:CircularReveal:1.3.1@aar') {
         transitive = true
     }
+
+
+    //待办事项左侧条
+    implementation 'com.github.vipulasri:timelineview:1.0.6'
+    implementation 'me.drakeet.materialdialog:library:1.3.1'
+    implementation 'com.manu:MDatePicker:1.0.1'
 }

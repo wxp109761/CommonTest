@@ -27,6 +27,8 @@ import java.util.Date;
 import java.util.EventListener;
 import java.util.Random;
 
+import static com.github.ybq.android.spinkit.animation.AnimationUtils.start;
+
 public class Remind extends Activity implements EventListener {
     @BindView(R.id.new_bg)
     ImageView newBg;
@@ -55,6 +57,8 @@ public class Remind extends Activity implements EventListener {
     @BindView(R.id.fabProgressCircle)
     FABProgressCircle fabProgressCircle;
 
+
+    String TAG="Readmind";
     private static int[] imageArray = new int[]{R.drawable.img_1,
             R.drawable.img_2,
             R.drawable.img_3,
@@ -74,32 +78,32 @@ public class Remind extends Activity implements EventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_todo);
         ButterKnife.bind(this);
-        setSupportActionBar(newToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       // setSupportActionBar(newToolbar);
+       // getSupportActionBar().setDisplayShowTitleEnabled(false);
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ca = Calendar.getInstance();
         getDate();
         getTime();
-        initPermission();
-        initBaiduRecognizer();
+       // initPermission();
+       // initBaiduRecognizer();
         initView();
         initHeadImage();
-        checkNotificationPermission();
+       // checkNotificationPermission();
     }
     private String todoDate = null, todoTime = null;
     private void initView() {
         fabOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (todoDate==null){
+                if (todoDate == null) {
                     Toasty.info(Remind.this, "没有设置日期", Toast.LENGTH_SHORT, true).show();
-                } else if (todoTime==null) {
+                } else if (todoTime == null) {
                     Toasty.info(Remind.this, "没有设置提醒时间", Toast.LENGTH_SHORT, true).show();
 
                 } else {
                     fabProgressCircle.show();
-                    tod = nv_todo_title.getText().toString();
-                    todoDsc = nv_todo_dsc.getText().toString();
+//                    tod = n.getText().toString();
+//                    todoDsc = nv_todo_dsc.getText().toString();
                     Calendar calendarTime = Calendar.getInstance();
                     calendarTime.setTimeInMillis(System.currentTimeMillis());
                     calendarTime.set(Calendar.YEAR, mYear);
@@ -109,125 +113,156 @@ public class Remind extends Activity implements EventListener {
                     calendarTime.set(Calendar.MINUTE, mMin);
                     calendarTime.set(Calendar.SECOND, 0);
                     remindTime = calendarTime.getTimeInMillis();
-                    Log.i(TAG, "时间是"+String.valueOf(remindTime));
+                    Log.i(TAG, "时间是" + String.valueOf(remindTime));
                     //插入数据
-                    User user = BmobUser.getCurrentUser(User.class);
-                    todos = new Todos();
-                    todos.setUser(user);
-                    todos.setTitle(todoTitle);
-                    todos.setDesc(todoDsc);
-                    todos.setDate(todoDate);
-                    todos.setTime(todoTime);
-                    todos.setRemindTime(remindTime);
-                    todos.setisAlerted(0);
-                    todos.setIsRepeat(isRepeat);
-                    todos.setImgId(imgId);
+//                    User user = BmobUser.getCurrentUser(User.class);
+//                    todos = new Todos();
+//                    todos.setUser(user);
+//                    todos.setTitle(todoTitle);
+//                    todos.setDesc(todoDsc);
+//                    todos.setDate(todoDate);
+//                    todos.setTime(todoTime);
+//                    todos.setRemindTime(remindTime);
+//                    todos.setisAlerted(0);
+//                    todos.setIsRepeat(isRepeat);
+//                    todos.setImgId(imgId);
                     Date date = new Date(remindTime);
-                    BmobDate bmobDate = new BmobDate(date);
-                    todos.setBmobDate(bmobDate);
+//                    BmobDate bmobDate = new BmobDate(date);
+//                    todos.setBmobDate(bmobDate);
 
-                    boolean isSync = (Boolean) SPUtils.get(getApplication(),"sync",true);
-                    Log.i("ToDo", "isSync: " + isSync);
+//                    boolean isSync = (Boolean) SPUtils.get(getApplication(),"sync",true);
+                    //  Log.i("ToDo", "isSync: " + isSync);
+//
+//                    if (isSync){
+//                        //保存数据到Bmob
+//                        if(NetWorkUtils.isNetworkConnected(getApplication()) && User.getCurrentUser(User.class)!= null){
+//                            todos.save(new SaveListener<String>() {
+//                                @Override
+//                                public void done(String s, BmobException e) {
+//                                    if(e==null){
+//                                        //插入本地数据库
+//                                        new ToDoDao(getApplicationContext()).create(todos);
+//                                        Log.i("bmob","保存到Bmob成功 "+ todos.getObjectId());
+//                                        Log.i("bmob","保存到本地数据库成功 "+ todos.getObjectId());
+////                                        Intent intent = new Intent(NewTodoActivity.this, MainActivity.class);
+////                                        setResult(2, intent);
+//                                        startService(new Intent(NewTodoActivity.this, AlarmService.class));
+//                                        finish();
+//                                    }else{
+//                                        Log.i("bmob","保存到Bmob失败："+e.getMessage());
+//                                    }
+//                                }
+//                            });
+//
+//                        } else {
+//                            Toasty.info(NewTodoActivity.this, "请先登录", Toast.LENGTH_SHORT, true).show();
+//                        }
+//                    } else {
+//                        new ToDoDao(getApplicationContext()).create(todos);
+////                        Intent intent = new Intent(NewTodoActivity.this, MainActivity.class);
+////                        setResult(2, intent);
+//                        startService(new Intent(NewTodoActivity.this, AlarmService.class));
+//                        finish();
+//                    }
+//
+                }
 
-                    if (isSync){
-                        //保存数据到Bmob
-                        if(NetWorkUtils.isNetworkConnected(getApplication()) && User.getCurrentUser(User.class)!= null){
-                            todos.save(new SaveListener<String>() {
-                                @Override
-                                public void done(String s, BmobException e) {
-                                    if(e==null){
-                                        //插入本地数据库
-                                        new ToDoDao(getApplicationContext()).create(todos);
-                                        Log.i("bmob","保存到Bmob成功 "+ todos.getObjectId());
-                                        Log.i("bmob","保存到本地数据库成功 "+ todos.getObjectId());
-//                                        Intent intent = new Intent(NewTodoActivity.this, MainActivity.class);
-//                                        setResult(2, intent);
-                                        startService(new Intent(NewTodoActivity.this, AlarmService.class));
-                                        finish();
-                                    }else{
-                                        Log.i("bmob","保存到Bmob失败："+e.getMessage());
-                                    }
-                                }
-                            });
+       }
+    });
 
-                        } else {
-                            Toasty.info(NewTodoActivity.this, "请先登录", Toast.LENGTH_SHORT, true).show();
+
+                    newTodoDate.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            DatePickerDialog datePickerDialog = new DatePickerDialog(Remind.this, onDateSetListener, mYear, mMonth, mDay);
+                            datePickerDialog.setCancelable(true);
+                            datePickerDialog.setCanceledOnTouchOutside(true);
+                            datePickerDialog.show();
+
                         }
-                    } else {
-                        new ToDoDao(getApplicationContext()).create(todos);
-//                        Intent intent = new Intent(NewTodoActivity.this, MainActivity.class);
-//                        setResult(2, intent);
-                        startService(new Intent(NewTodoActivity.this, AlarmService.class));
-                        finish();
-                    }
+                    });
+
+                    newTodoTime.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            TimePickerDialog timePickerDialog = new TimePickerDialog(Remind.this, onTimeSetListener, mHour, mMin, true);
+                            timePickerDialog.setCancelable(true);
+                            timePickerDialog.setCanceledOnTouchOutside(true);
+                            timePickerDialog.show();
+                        }
+                    });
+
+                    newToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    });
+
+                    repeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                            if (isChecked) {
+//                                isRepeat = 1;
+                            } else {
+//                               / isRepeat = 0;
+                            }
+
+                        }
+                    });
+
+                    micTitle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // flag = R.id.mic_title;
+                            //showVoiceDialog();
+                            start();
+                        }
+                    });
+
+                    micDsc.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //  flag = R.id.mic_dsc;
+                            //showVoiceDialog();
+                            start();
+                        }
+                    });
 
                 }
+    /**
+     * 日期选择器对话框监听
+     */
+    public DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            mYear = year;
+            mMonth = monthOfYear;
+            mDay = dayOfMonth;
+            todoDate = year+ "年"+(monthOfYear + 1) + "月" + dayOfMonth + "日";
+            newTodoDate.setText(todoDate);
+        }
+    };
+
+    /**
+     * 时间选择对话框监听
+     */
+    public TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+            mHour = hour;
+            mMin = minute;
+            if (minute < 10){
+                todoTime = hour + ":" + "0" + minute;
+            } else {
+                todoTime = hour + ":" + minute;
             }
-        });
+            newTodoTime.setText(todoTime);
+        }
+    };
 
-
-        nv_todo_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(NewTodoActivity.this, onDateSetListener, mYear, mMonth, mDay);
-                datePickerDialog.setCancelable(true);
-                datePickerDialog.setCanceledOnTouchOutside(true);
-                datePickerDialog.show();
-
-            }
-        });
-
-        nv_todo_time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(NewTodoActivity.this, onTimeSetListener, mHour,mMin, true);
-                timePickerDialog.setCancelable(true);
-                timePickerDialog.setCanceledOnTouchOutside(true);
-                timePickerDialog.show();
-            }
-        });
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        nv_repeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked){
-                    isRepeat = 1;
-                } else {
-                    isRepeat = 0;
-                }
-
-            }
-        });
-
-        mic_title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flag = R.id.mic_title;
-                showVoiceDialog();
-                start();
-            }
-        });
-
-        mic_dsc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flag = R.id.mic_dsc;
-                showVoiceDialog();
-                start();
-            }
-        });
-
-    }
 
     /**
      * 获取日期
