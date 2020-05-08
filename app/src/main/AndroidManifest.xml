@@ -33,7 +33,7 @@
         <activity android:name=".handler.HandlerActivity"/>
         <activity android:name=".asyncTask.AsyncTaskActivity"/>
         <activity android:name=".qiniu.ImgActivity"/>
-        <activity android:name=".remind.Remind"/>
+        <activity android:name=".remind.newRemindActivity"/>
         <activity android:name=".service.ServiceActivity"/>
         <activity android:name=".remind.RemindActivity"/>
         <activity android:name=".alarmClock.alarmActivity"/>
@@ -48,20 +48,31 @@
 
         <service android:name="com.example.CommonTest.service.messageService"
                  android:process=":remote"/>
-        <receiver
-                android:name=".memoapp.receiver.AlarmReceiver"
-                android:enabled="true"
-                android:exported="true"/>
 
-        <activity
-                android:name=".memoapp.activity.MainActivity"
-                android:screenOrientation="portrait">
+
+
+
+        <service android:name=".remind.AlarmService"
+                 android:process=":live">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action
+                        android:name="com.example.lulin.todolist.Service.AlarmService"
+                />
             </intent-filter>
-        </activity>
+        </service>
+
+        <receiver
+                android:name=".remind.AlarmReceiver"
+                android:enabled="true"
+                android:exported="true"
+                android:process=":remote" />
+
+
+
+
+
+
+
 
         <receiver android:name=".alarmClock.RepeatingAlarm">
             <intent-filter >

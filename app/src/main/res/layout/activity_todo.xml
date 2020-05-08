@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                 android:id="@+id/fg_container"/>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                 android:id="@+id/fg_container">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/add_white"
+                app:backgroundTint="@color/colorPrimary"
+                app:elevation="6dp"
+                app:rippleColor="@color/colorPrimaryDark"
+                app:pressedTranslationZ="25dp"
+                app:fabSize="normal"/>
+
+    </FrameLayout>
+
 </LinearLayout>

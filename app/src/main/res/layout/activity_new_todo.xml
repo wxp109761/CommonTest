@@ -90,6 +90,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/done"
+
             app:elevation="0dp"
             app:borderWidth="0dp" />
 
