@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.example.CommonTest.User.UserDataActivity;
 import com.example.CommonTest.alarmClock.alarmActivity;
 import com.example.CommonTest.animation.AnimationActivity;
 import com.example.CommonTest.asyncTask.AsyncTaskActivity;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent9 = new Intent(MainActivity.this, RemindActivity.class);
                 startActivity(intent9);
             case R.id.naozhong:
-                Intent intent10 = new Intent(MainActivity.this, alarmActivity.class);
+                Intent intent10 = new Intent(MainActivity.this, UserDataActivity.class);
                 startActivity(intent10);
         }
     }

@@ -50,8 +50,9 @@ public class alarmActivity extends Activity {
                 .setSupportTime(false)
                 .setSupportTime(true)
                 .setTitle("日期--时间")
-                .setTwelveHour(true)
-                .setCanceledTouchOutside(false)
+                .setTwelveHour(false)
+                .setCanceledTouchOutside(true)
+
                 //结果回调(必须)
                 .setOnDateResultListener(new MDatePickerDialog.OnDateResultListener() {
                     @Override
