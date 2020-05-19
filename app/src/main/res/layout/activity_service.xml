@@ -3,20 +3,54 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="启动服务"
+        android:gravity="center"
+        android:padding="20dp"
+        />
 
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="StartService"
+            android:id="@+id/start_service"/>
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="StopStartService"
+        android:id="@+id/stop_service"/>
 
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="Service测试"
-            android:id="@+id/service"/>
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="绑定服务"
-            android:id="@+id/bindservice"/>
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="解除绑定服务"
-            android:id="@+id/unbindservice"/>
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="获取数据"
-            android:id="@+id/getdata"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="绑定服务"
+        android:gravity="center"
+        android:padding="20dp"
+        />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/a_bind_service"
+        android:text="绑定服务--A"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/a_to_b"
+        android:text="bindService跳转到B"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/a_unbind_service"
+        android:text="解绑服务--A"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/a_finish_service"
+        android:text="完成--A"
+        />
 
 </LinearLayout>

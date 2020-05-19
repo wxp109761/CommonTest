@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
           package="com.example.CommonTest">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
-
+    <!-- 获取网络状态的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取开机广播 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
                      tools:ignore="ProtectedPermissions" />
@@ -37,6 +42,9 @@
         <activity android:name=".service.ServiceActivity"/>
         <activity android:name=".remind.RemindActivity"/>
         <activity android:name=".alarmClock.alarmActivity"/>
+        <activity android:name=".fileDownload.FileDownLoad"/>
+        <activity android:name=".CrawingNews.CrawingNewsActivity"/>
+        <activity android:name=".service.BindActivity"/>
         <activity android:name=".User.UserDataActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>
         <service android:name="com.example.CommonTest.service.MyService">
@@ -45,24 +53,18 @@
 <!--                <category android:name="android.intent.category.DEFAULT" />-->
 <!--            </intent-filter>-->
         </service>
-        <service android:name="com.example.CommonTest.service.MyService2" />
-        <service android:name="com.example.CommonTest.service.BindService" />
+        <service android:name="com.example.CommonTest.service.StartServiceTest" />
+        <service android:name="com.example.CommonTest.service.BindServiceTest" />
 
         <service android:name="com.example.CommonTest.service.messageService"
                  android:process=":remote"/>
-
-
-
-
         <service android:name=".remind.AlarmService"
                  android:process=":live">
             <intent-filter>
                 <action
-                        android:name="com.example.lulin.todolist.Service.AlarmService"
-                />
+                        android:name="com.example.lulin.todolist.Service.AlarmService"/>
             </intent-filter>
         </service>
-
         <receiver
                 android:name=".remind.AlarmReceiver"
                 android:enabled="true"
@@ -70,17 +72,6 @@
                 android:process=":remote" />
 
 
-
-
-
-
-
-
-        <receiver android:name=".alarmClock.RepeatingAlarm">
-            <intent-filter >
-                <action android:name="com.gcc.alarm"/>
-            </intent-filter>
-        </receiver>
 
 
         <provider
@@ -93,6 +84,46 @@
                     android:resource="@xml/file_paths" />
         </provider>
 
+        <provider
+            android:name=".contentProvider.contentProvider"
+            android:authorities="com.example.contentProvider"
+            android:exported="true"
+            android:enabled="true">
+        </provider>
+        <service
+            android:name=".alarmClock.AlarmService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.jz.alarmsample.alarm" />
+            </intent-filter>
+        </service>
+        <activity android:name=".Search.searchActivity"/>
+        <activity android:name=".BroadCast.BroadCastTestActivity"/>
+
+
+<!--        <receiver-->
+<!--            android:name=".BroadCast.BootCompleteReceiver"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <receiver
+            android:name=".BroadCast.MyBroadcastReceiver2"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="MYBROAD"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".alarmClock.RepeatingAlarm">
+            <intent-filter >
+                <action android:name="com.gcc.alarm"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 

@@ -79,4 +79,9 @@ dependencies {
     implementation 'com.carmelo:keeplive:1.0.0'
     //毛玻璃
     implementation 'com.github.Andy671:Dachshund-Tab-Layout:v0.3.3'
+    implementation 'com.liulishuo.filedownloader:library:1.6.4'//最新版本见github
+    implementation 'com.contrarywind:Android-PickerView:3.2.6'
+
+    //爬取数据
+    implementation 'org.jsoup:jsoup:1.13.1'
 }

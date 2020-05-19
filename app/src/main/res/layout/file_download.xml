@@ -3,15 +3,13 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TimePicker android:layout_width="match_parent" android:layout_height="80dp"
-    android:id="@+id/alarm"
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:text="文件下载"
+            android:id="@+id/btn_downlaod"
     />
     <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:text="设置闹钟"
-            android:id="@+id/btn_add_clock"
+    android:id="@+id/time_picker"
     />
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:text="提醒通知"
-        android:id="@+id/btn_add_notice"
-        />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/time_text"/>
 </LinearLayout>

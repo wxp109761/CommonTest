@@ -11,39 +11,103 @@
                   android:orientation="vertical">
         <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="Service测试"
-                android:id="@+id/service"/>
+                android:id="@+id/service_test_btn"/>
 
         <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="AsynTask"
                 android:id="@+id/asynctask"/>
 
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="fragment测试"
-                android:id="@+id/fragment"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="messsageService测试"
-                android:id="@+id/message_service"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="Animation动画测试"
-                android:id="@+id/animation"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="SqlLite测试"
-                android:id="@+id/sqllite"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="视频播放器"
-                android:id="@+id/video_activity"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="Handler"
-                android:id="@+id/handler"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="QINIU图床"
-                android:id="@+id/qiniu_img"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="提醒功能"
-                android:id="@+id/remind_activity"/>
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="fragment测试"
+            android:id="@+id/fragment"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="messsageService测试"
+            android:id="@+id/message_service"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="Animation动画测试"
+            android:id="@+id/animation"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="SqlLite测试"
+            android:id="@+id/sqllite"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="视频播放器"
+            android:id="@+id/video_activity"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Handler"
+            android:id="@+id/handler"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="QINIU图床"
+            android:id="@+id/qiniu_img"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="提醒功能"
+            android:id="@+id/remind_activity"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+
+                android:text="数据爬取"
+                android:id="@+id/crawing_news"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:id="@+id/broad_cast_btn"
+                android:text="BroadCast"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="文件下载"
+                android:id="@+id/file_download"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="闹钟"
                 android:id="@+id/naozhong"/>
-
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

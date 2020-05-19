@@ -21,8 +21,7 @@ public class MyService extends Service{
     }
 
 
-    class MyBinder extends IMyAidlInterface.Stub
-    {
+    class MyBinder extends IMyAidlInterface.Stub {
 
         @Override
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
@@ -30,8 +29,7 @@ public class MyService extends Service{
         }
 
         @Override
-        public String getName() throws RemoteException
-        {
+        public String getName() throws RemoteException {
             return "test";
         }
     }
