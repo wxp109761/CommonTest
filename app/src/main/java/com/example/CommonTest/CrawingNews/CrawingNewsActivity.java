@@ -1,95 +1,135 @@
 package com.example.CommonTest.CrawingNews;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.example.CommonTest.R;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class CrawingNewsActivity extends Activity {
-    private static final String DEFAULT_MAIN_URL = "http://www.sina.com.cn/mid/search.shtml?range=all&c=news&q=%E9%AB%98%E6%A0%A1%E5%AE%9E%E9%AA%8C%E5%AE%A4&from=home&ie=utf-8";
-    @BindView(R.id.text)
-    TextView text;
+    int page=0;
+    private  String DEFAULT_MAIN_URL = "http://api.search.sina.com.cn/?q=[高校实验室]&c=news&sort=time&ie=utf-8&from=dfz_api&page="+page;
+
     @BindView(R.id.list_view)
     ListView listView;
-
+    List<NewsBean.ResultBean.ListBean> listBean;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crawing);
         ButterKnife.bind(this);
-        getDatas();
+        getData();
+        RefreshLayout refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refreshlayout.finishRefresh(false);//传入false表示刷新失败
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                page++;
+                getData();
+               // listView.set
+            }
+        });
+
     }
 
-    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36";
 
+    public void getData(){
+        MyAsyncTask myAsyncTask=new MyAsyncTask();
+        myAsyncTask.execute();
+    }
     String TAG = "CreaingNewsActivity";
 
-    private void getDatas() {
-        List<String> lists = new ArrayList<>();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    long a = System.currentTimeMillis();
-                    Connection connection;
-                    Document doc;
-                    connection = Jsoup.connect(DEFAULT_MAIN_URL);
-                    connection.header("User-Agent", USER_AGENT);
-                    doc = connection.get();
-                    text.setText(doc.getElementById("li").text());
-                    //原料在<p class="subcontent">中
-                    Elements burdens = doc.select("span");
 
-                    Document
-                            document1 = Jsoup.connect("http://ds.suning.cn/ds/generalForTile/000000000133537397-9173-2-0000000000-1--ds000000000.jsonp")
-                            .ignoreContentType(true)
-                            .data("query", "Java")
-                            .userAgent("Mozilla")
-                            .cookie("auth", "token")
-                            .timeout(3000)
-                            .get();
-                    //打印出模拟ajax请求返回的数据，一个json格式的数据，对它进行解析就可以了
-                    System.out.println(document1.text());
 
-                    System.out.println("  zzz " + burdens.size());
-                    for (int i = 0; i < burdens.size(); i++) {
-                        //使用Element.select(String selector)查找元素，使用Node.attr(String key)方法取得一个属性的值
-                        String title = burdens.get(i).select("a").toString();
-                        String burden = burdens.get(i).text();
-                        //Log.e(TAG, "tvTitle:" + title);
-                        Log.e(TAG, "burden:" + burden);
-                    }
-                    Elements pageElements = doc.select("div.ui-page-inner");
-                    Element nowPageElement = pageElements.select("a.now_page").get(0);
-                    Element nextPageElement = nowPageElement.nextElementSibling();
-//            mNextPageUrl = nextPageElement.attr("href");
-//            isFirstIn = false;
-                    long b = System.currentTimeMillis();
-                    Log.e(TAG, "所用时间：" + (b - a) + "毫秒");
-                } catch (Exception e) {
-                    Log.e(TAG, e.toString());
+class MyAsyncTask extends AsyncTask<String, Void, String> {
 
-                }
+    @Override
+    protected String doInBackground(String... params) {
+
+        try {
+            URL url = new URL(DEFAULT_MAIN_URL);
+            HttpURLConnection openConnection = (HttpURLConnection) url
+                    .openConnection();
+            openConnection.setConnectTimeout(5000);
+            openConnection.setReadTimeout(5000);
+            int responseCode = openConnection.getResponseCode();
+            if (responseCode == 200) {
+                InputStream inputStream = openConnection.getInputStream();
+                StreamUtils streamUtils = new StreamUtils();
+                String parseStream = streamUtils.parseSteam(inputStream);
+                return parseStream;
             }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        ).start();
+        return null;
     }
 
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        Gson gson = new Gson();
+        NewsBean fromJson = gson.fromJson(result,
+                NewsBean.class);
+        listBean= fromJson.getResult().getList();
+        NewsAdapter adapter=new NewsAdapter(getApplicationContext(),listBean,R.layout.adapter_item_list);
+        listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < listBean.size(); i++) {
+                    if (i == position) {
+                        String url = listBean.get(i).getUrl();
+                        Intent it=new Intent(getApplicationContext(), WebViewsActivity.class);
+                        it.putExtra("url",url);
+                        startActivity(it);
+                    }
+                }
+            }
+        });
+    }
+}
 }

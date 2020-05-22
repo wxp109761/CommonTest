@@ -1,14 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/refreshLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/text"/>
+    android:layout_height="200dp"
+    android:overScrollMode="never"
+    android:background="#fff" />
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-</RelativeLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

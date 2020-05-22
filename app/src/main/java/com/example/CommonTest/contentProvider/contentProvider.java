@@ -19,7 +19,6 @@ public class contentProvider extends ContentProvider {
     private DatabaseHelper databaseHelper;
     public static final String AUTHORITY="com.example.contentProvider";
 
-
     private static UriMatcher uriMatcher;
     public static final int USER_DIR = 0;
     public static final int USER_ITEM = 1;
@@ -46,11 +45,11 @@ public class contentProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             case USER_DIR:
                 //参数1：表名  其他参数可借鉴上面的介绍
-                cursor = db.query("test_db", projection, selection, selectionArgs, null, null, sortOrder);
+                cursor = db.query("user", projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case USER_ITEM:
                 String queryId = uri.getPathSegments().get(1);
-                cursor = db.query("test_db", projection, "id=?", new String[]{queryId}, null, null, sortOrder);
+                cursor = db.query("user", projection, "id=?", new String[]{queryId}, null, null, sortOrder);
                 break;
             default:
         }
@@ -67,7 +66,19 @@ public class contentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
+        SQLiteDatabase db =databaseHelper.getWritableDatabase();
+        switch (uriMatcher.match(uri)) {
+            case USER_DIR:
+            case USER_ITEM:
+                //参数1：表名  参数2：没有赋值的设为空   参数3：插入值
+                long newUserId = db.insert("user", null, values);
+                break;
+            default:
+                break;
+        }
         return null;
+
+
     }
 
     @Override
@@ -76,17 +87,29 @@ public class contentProvider extends ContentProvider {
         int deleteInt=0;
         switch (uriMatcher.match(uri)){
             case USER_DIR:
-                deleteInt=db.delete("userdemo",selection, selectionArgs);
+                deleteInt=db.delete("user",selection, selectionArgs);
                 break;
             case USER_ITEM:
                 String deleteId=uri.getPathSegments().get(1);
-                deleteInt=db.delete("userdemo","id=?",new String[]{deleteId});
+                deleteInt=db.delete("user","id=?",new String[]{deleteId});
         }
         return 0;
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+      SQLiteDatabase db=databaseHelper.getWritableDatabase();
+      int updateRow=0;
+        switch (uriMatcher.match(uri)){
+            case USER_DIR:
+                updateRow = db.update("user",values,selection,selectionArgs);
+                break;
+            case USER_ITEM:
+                String updateId = uri.getPathSegments().get(1);
+                updateRow = db.update("user",values,"id=?",new String[]{updateId});
+
+                break;
+        }
+        return updateRow;
     }
 }

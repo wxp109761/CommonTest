@@ -9,15 +9,23 @@
         >
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:orientation="vertical">
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="Service测试"
-                android:id="@+id/service_test_btn"/>
 
-        <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:text="AsynTask"
-                android:id="@+id/asynctask"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Service测试"
+            android:id="@+id/service_test_btn"/>
 
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="AsynTask"
+            android:id="@+id/asynctask"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="ContentProvider"
+            android:id="@+id/content_provider_btn"/>
 
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,28 +33,23 @@
         android:orientation="horizontal">
         <Button
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="fragment测试"
             android:id="@+id/fragment"/>
         <Button
             android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="messsageService测试"
             android:id="@+id/message_service"/>
         <Button
             android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Animation动画测试"
             android:id="@+id/animation"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:text="SqlLite测试"
-            android:id="@+id/sqllite"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,6 +111,21 @@
                 android:layout_height="wrap_content"
                 android:text="闹钟"
                 android:id="@+id/naozhong"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SqlLite测试"
+            android:id="@+id/sqllite"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="相机"
+                android:id="@+id/camera_test"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
