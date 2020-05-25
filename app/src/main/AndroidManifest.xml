@@ -3,6 +3,7 @@
           package="com.example.CommonTest">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <!--    相机权限-->
@@ -16,6 +17,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
                      tools:ignore="ProtectedPermissions" />
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <application
             android:allowBackup="true"
         android:name=".APP"
@@ -91,15 +96,9 @@
             android:exported="true"
             android:enabled="true">
         </provider>
-        <service
-            android:name=".alarmClock.AlarmService"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.jz.alarmsample.alarm" />
-            </intent-filter>
-        </service>
+
         <activity android:name=".Search.searchActivity"/>
+        <activity android:name=".Notification.NotificationActivity"/>
         <activity android:name=".BroadCast.BroadCastTestActivity"/>
 
 
@@ -120,11 +119,12 @@
                 <action android:name="MYBROAD"/>
             </intent-filter>
         </receiver>
-        <receiver android:name=".alarmClock.RepeatingAlarm">
-            <intent-filter >
-                <action android:name="com.gcc.alarm"/>
-            </intent-filter>
-        </receiver>
+
+        <service
+            android:name=".alarmClock.ClockService"
+            android:enabled="true"
+            android:exported="true" />
+        <activity android:name=".alarmClock.ClockRemindDialog"/>
     </application>
 
 

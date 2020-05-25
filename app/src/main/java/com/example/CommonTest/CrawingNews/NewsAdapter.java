@@ -21,10 +21,13 @@ public class NewsAdapter extends BaseAdapter {
     private int layoutId;
     private ViewHolder viewHolder = null;
 
+
     public NewsAdapter(Context mContext, List<NewsBean.ResultBean.ListBean> list, int layoutId) {
         this.mContext = mContext;
         this.list = list;
         this.layoutId = layoutId;
+        String s="";
+
     }
 
 

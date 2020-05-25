@@ -122,10 +122,15 @@
             android:text="SqlLite测试"
             android:id="@+id/sqllite"/>
             <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="相机"
+            android:id="@+id/camera_test"/>
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="相机"
-                android:id="@+id/camera_test"/>
+                android:text="通知栏"
+                android:id="@+id/notification_test"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

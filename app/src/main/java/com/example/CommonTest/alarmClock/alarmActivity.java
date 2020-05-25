@@ -36,7 +36,6 @@ public class alarmActivity extends Activity {
     TimePicker alarm;
     @BindView(R.id.btn_add_clock)
     Button btnAddClock;
-    long selecttime = 0;
     @BindView(R.id.btn_add_notice)
     Button btnAddNotice;
 
@@ -69,7 +68,7 @@ public class alarmActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_alarm);
-        mNotificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+      //  mNotificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         ButterKnife.bind(this);
     }
 
@@ -78,41 +77,18 @@ public class alarmActivity extends Activity {
         super.onResume();
     }
 
-    /**
-     * 取消闹钟
-     */
-    private void cancleAlarm() {
-        // Create the same intent, and thus a matching IntentSender, for
-        // the one that was scheduled.
-        Intent intent = new Intent(alarmActivity.this, RepeatingAlarm.class);
-        intent.setAction("com.gcc.alarm");
-        PendingIntent sender = PendingIntent.getBroadcast(alarmActivity.this,
-                0, intent, 0);
-
-        // And cancel the alarm.
-        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        am.cancel(sender);
-    }
-
-    private void alarm(long triggerTime) {
-        // 获取系统的闹钟服务
-        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        // 触发闹钟的时间（毫秒）
-        Intent intent = new Intent(this, RepeatingAlarm.class);
-        intent.setAction("com.gcc.alarm");
-        intent.setPackage("com.example.uploadingimages");
-        PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
-        // 启动一次只会执行一次的闹钟
-        am.set(AlarmManager.RTC, triggerTime, op);
-        // 指定时间重复执行闹钟
-        // am.setRepeating(AlarmManager.RTC,triggerTime,2000,op);
-    }
-
+    private ClockManager mClockManager = ClockManager.getInstance();
 
     @OnClick({R.id.btn_add_clock, R.id.btn_add_notice})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_add_clock:
+
+                Intent intent = new Intent();
+              //  intent.putExtra(ClockReceiver.EXTRA_EVENT_ID, id);
+                intent.setClass(this, ClockService.class);
+
+               PendingIntent pendingIntent= PendingIntent.getService(this, 0x001, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 MDatePickerDialog dialog = new MDatePickerDialog.Builder(this)
                         //附加设置(非必须,有默认值)
                         .setCanceledTouchOutside(true)
@@ -131,18 +107,19 @@ public class alarmActivity extends Activity {
                                 SimpleDateFormat dateFormat = (SimpleDateFormat) SimpleDateFormat.getDateInstance();
                                 dateFormat.applyPattern("yyyy-MM-dd HH:mm:ss");
                                 Toast.makeText(alarmActivity.this, dateFormat.format(new Date(date)), Toast.LENGTH_SHORT).show();
-                                selecttime = date;
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                Date currentdate = new Date(System.currentTimeMillis());
+                                String logindate2 = simpleDateFormat.format(currentdate);
+                                String select = simpleDateFormat.format(new Date(date));
+                                long triggerTime = TimeCompare(logindate2, select);
+                                System.out.println(" time" + triggerTime);
+
+
+                                mClockManager.addAlarm(pendingIntent, DateTimeUtil.str2Date(select));
                             }
                         })
                         .build();
                 dialog.show();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date = new Date(System.currentTimeMillis());
-                String logindate2 = simpleDateFormat.format(date);
-                String select = simpleDateFormat.format(new Date(selecttime));
-                long triggerTime = TimeCompare(logindate2, select);
-                System.out.println(" time" + triggerTime);
-                alarm(triggerTime);
                 break;
             case R.id.btn_add_notice:
 //                Notification.Builder builder=new Notification.Builder(this);

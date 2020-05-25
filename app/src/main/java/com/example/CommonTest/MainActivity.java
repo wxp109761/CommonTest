@@ -8,10 +8,13 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CommonTest.BroadCast.BroadCastTestActivity;
+import com.example.CommonTest.Camera.CameraTest;
 import com.example.CommonTest.CrawingNews.CrawingNewsActivity;
+import com.example.CommonTest.Notification.NotificationActivity;
 import com.example.CommonTest.alarmClock.alarmActivity;
 import com.example.CommonTest.animation.AnimationActivity;
 import com.example.CommonTest.asyncTask.AsyncTaskActivity;
+import com.example.CommonTest.contentProvider.ContentProviderActivity;
 import com.example.CommonTest.fileDownload.FileDownLoad;
 import com.example.CommonTest.fragment.FragmentActivity;
 import com.example.CommonTest.handler.HandlerActivity;
@@ -19,7 +22,6 @@ import com.example.CommonTest.messageService.MessageServiceActivity;
 import com.example.CommonTest.qiniu.ImgActivity;
 import com.example.CommonTest.remind.RemindActivity;
 import com.example.CommonTest.service.ServiceActivity;
-import com.example.CommonTest.slide.FilterPopupWindow;
 import com.example.CommonTest.sqllite.SqlLiteActivity;
 import com.example.CommonTest.utils.Utils;
 import com.example.CommonTest.video.VideoActivity;
@@ -58,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
     Button fileDownload;
     @BindView(R.id.naozhong)
     Button naozhong;
+    @BindView(R.id.content_provider_btn)
+    Button contentProviderBtn;
+    @BindView(R.id.camera_test)
+    Button cameraTest;
+    @BindView(R.id.notification_test)
+    Button notificationTest;
     private String TAG = "MainActivity";
 
 
@@ -71,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    @OnClick({R.id.service_test_btn, R.id.asynctask, R.id.fragment, R.id.message_service, R.id.animation, R.id.sqllite, R.id.video_activity, R.id.handler, R.id.qiniu_img, R.id.remind_activity, R.id.crawing_news, R.id.broad_cast_btn, R.id.file_download, R.id.naozhong})
+    @OnClick({R.id.notification_test,R.id.camera_test, R.id.content_provider_btn, R.id.service_test_btn, R.id.asynctask, R.id.fragment, R.id.message_service, R.id.animation, R.id.sqllite, R.id.video_activity, R.id.handler, R.id.qiniu_img, R.id.remind_activity, R.id.crawing_news, R.id.broad_cast_btn, R.id.file_download, R.id.naozhong})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.service_test_btn:
@@ -82,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.animation:
                 Intent intent1 = new Intent(MainActivity.this, AnimationActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.content_provider_btn:
+                Intent intent14 = new Intent(MainActivity.this, ContentProviderActivity.class);
+                startActivity(intent14);
                 break;
             case R.id.message_service:
                 Intent intent2 = new Intent(MainActivity.this, MessageServiceActivity.class);
@@ -131,6 +142,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.broad_cast_btn:
                 Intent intent13 = new Intent(MainActivity.this, BroadCastTestActivity.class);
                 startActivity(intent13);
+                break;
+            case R.id.camera_test:
+                Intent intent15 = new Intent(MainActivity.this, CameraTest.class);
+                startActivity(intent15);
+                break;
+            case R.id.notification_test:
+                Intent intent16 = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intent16);
                 break;
         }
     }

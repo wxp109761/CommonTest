@@ -1,8 +1,6 @@
 package com.example.CommonTest;
-
 import android.app.Application;
 import android.content.Context;
-
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -11,7 +9,6 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
-
 public class APP extends Application {
     static {
         //设置全局的Header构建器
@@ -31,4 +28,20 @@ public class APP extends Application {
             }
         });
     }
+    private static Context mContext;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mContext = this;
+/*        Daemon.run(this,
+                ClockService.class, Daemon.INTERVAL_ONE_MINUTE);
+        startTimeTask();
+        grayGuard();*/
+    }
+
+    public static Context getContext() {
+        return mContext;
+    }
+
 }
