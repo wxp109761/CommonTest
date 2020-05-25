@@ -57,7 +57,9 @@
                   android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Camera.CameraTest"/>
         <activity android:name=".CrawingNews.WebViewsActivity"/>
+        <activity android:name=".SurfaceViewTest.SurfaceViewActivity"/>
         <service android:name="com.example.CommonTest.service.MyService">
+
 <!--            <intent-filter>-->
 <!--                <action android:name="com.example.uploadingimages" />-->
 <!--                <category android:name="android.intent.category.DEFAULT" />-->

@@ -11,6 +11,7 @@ import com.example.CommonTest.BroadCast.BroadCastTestActivity;
 import com.example.CommonTest.Camera.CameraTest;
 import com.example.CommonTest.CrawingNews.CrawingNewsActivity;
 import com.example.CommonTest.Notification.NotificationActivity;
+import com.example.CommonTest.SurfaceViewTest.SurfaceViewActivity;
 import com.example.CommonTest.alarmClock.alarmActivity;
 import com.example.CommonTest.animation.AnimationActivity;
 import com.example.CommonTest.asyncTask.AsyncTaskActivity;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     Button cameraTest;
     @BindView(R.id.notification_test)
     Button notificationTest;
+    @BindView(R.id.surfaceview_btn)
+    Button surfaceviewBtn;
     private String TAG = "MainActivity";
 
 
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.notification_test,R.id.camera_test, R.id.content_provider_btn, R.id.service_test_btn, R.id.asynctask, R.id.fragment, R.id.message_service, R.id.animation, R.id.sqllite, R.id.video_activity, R.id.handler, R.id.qiniu_img, R.id.remind_activity, R.id.crawing_news, R.id.broad_cast_btn, R.id.file_download, R.id.naozhong})
+    @OnClick({R.id.surfaceview_btn,R.id.notification_test, R.id.camera_test, R.id.content_provider_btn, R.id.service_test_btn, R.id.asynctask, R.id.fragment, R.id.message_service, R.id.animation, R.id.sqllite, R.id.video_activity, R.id.handler, R.id.qiniu_img, R.id.remind_activity, R.id.crawing_news, R.id.broad_cast_btn, R.id.file_download, R.id.naozhong})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.service_test_btn:
@@ -150,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.notification_test:
                 Intent intent16 = new Intent(MainActivity.this, NotificationActivity.class);
                 startActivity(intent16);
+                break;
+            case R.id.surfaceview_btn:
+                Intent intent17 = new Intent(MainActivity.this, SurfaceViewActivity.class);
+                startActivity(intent17);
                 break;
         }
     }

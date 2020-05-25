@@ -131,6 +131,13 @@
                 android:layout_height="wrap_content"
                 android:text="通知栏"
                 android:id="@+id/notification_test"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SurfaceView"
+                android:id="@+id/surfaceview_btn"
+                />
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
